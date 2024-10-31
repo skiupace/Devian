@@ -1,2 +1,2 @@
 # Devian
-a Simple 3D Game Engine Made In C++ With OpenGL.
+*Simple 3D Game Engine Made In C++ With OpenGL.*
