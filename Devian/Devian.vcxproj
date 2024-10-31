@@ -107,7 +107,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Dev\Projects\C++ Projects\Game Engine\Devian\Devian\vendor\ImGui\misc\debuggers;C:\Dev\Projects\C++ Projects\Game Engine\Devian\Devian\vendor\ImGui\backends;C:\Dev\Projects\C++ Projects\Game Engine\Devian\Devian\vendor\ImGui;C:\Users\Ahmed47\Downloads\Libraries\glfw-3.4.bin.WIN64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Dev\Projects\C++ Projects\Game Engine\Devian\Devian\vendor\imgui\misc\debuggers;C:\Dev\Projects\C++ Projects\Game Engine\Devian\Devian\vendor\imgui\backends;C:\Dev\Projects\C++ Projects\Game Engine\Devian\Devian\vendor\imgui;C:\Users\Ahmed47\Downloads\Libraries\glfw-3.4.bin.WIN64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -136,32 +136,32 @@
     <ClCompile Include="src\Devian\Core\Application.cpp" />
     <ClCompile Include="src\Devian\Platform\WindowsPlatform.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="vendor\ImGui\backends\imgui_impl_glfw.cpp" />
-    <ClCompile Include="vendor\ImGui\backends\imgui_impl_opengl2.cpp" />
-    <ClCompile Include="vendor\ImGui\backends\imgui_impl_opengl3.cpp" />
-    <ClCompile Include="vendor\ImGui\imgui.cpp" />
-    <ClCompile Include="vendor\ImGui\imgui_demo.cpp" />
-    <ClCompile Include="vendor\ImGui\imgui_draw.cpp" />
-    <ClCompile Include="vendor\ImGui\imgui_tables.cpp" />
-    <ClCompile Include="vendor\ImGui\imgui_widgets.cpp" />
-    <ClCompile Include="vendor\ImGui\misc\cpp\imgui_stdlib.cpp" />
+    <ClCompile Include="vendor\imgui\backends\imgui_impl_glfw.cpp" />
+    <ClCompile Include="vendor\imgui\backends\imgui_impl_opengl2.cpp" />
+    <ClCompile Include="vendor\imgui\backends\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="vendor\imgui\imgui.cpp" />
+    <ClCompile Include="vendor\imgui\imgui_demo.cpp" />
+    <ClCompile Include="vendor\imgui\imgui_draw.cpp" />
+    <ClCompile Include="vendor\imgui\imgui_tables.cpp" />
+    <ClCompile Include="vendor\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="vendor\imgui\misc\cpp\imgui_stdlib.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Devian\Core\Application.hpp" />
     <ClInclude Include="src\Devian\Core\Core.hpp" />
     <ClInclude Include="src\Devian\Platform\Platform.hpp" />
     <ClInclude Include="src\Devian\Platform\WindowsPlatform.hpp" />
-    <ClInclude Include="vendor\ImGui\backends\imgui_impl_glfw.h" />
-    <ClInclude Include="vendor\ImGui\backends\imgui_impl_opengl2.h" />
-    <ClInclude Include="vendor\ImGui\backends\imgui_impl_opengl3.h" />
-    <ClInclude Include="vendor\ImGui\backends\imgui_impl_opengl3_loader.h" />
-    <ClInclude Include="vendor\ImGui\imconfig.h" />
-    <ClInclude Include="vendor\ImGui\imgui.h" />
-    <ClInclude Include="vendor\ImGui\imgui_internal.h" />
-    <ClInclude Include="vendor\ImGui\imstb_rectpack.h" />
-    <ClInclude Include="vendor\ImGui\imstb_textedit.h" />
-    <ClInclude Include="vendor\ImGui\imstb_truetype.h" />
-    <ClInclude Include="vendor\ImGui\misc\cpp\imgui_stdlib.h" />
+    <ClInclude Include="vendor\imgui\backends\imgui_impl_glfw.h" />
+    <ClInclude Include="vendor\imgui\backends\imgui_impl_opengl2.h" />
+    <ClInclude Include="vendor\imgui\backends\imgui_impl_opengl3.h" />
+    <ClInclude Include="vendor\imgui\backends\imgui_impl_opengl3_loader.h" />
+    <ClInclude Include="vendor\imgui\imconfig.h" />
+    <ClInclude Include="vendor\imgui\imgui.h" />
+    <ClInclude Include="vendor\imgui\imgui_internal.h" />
+    <ClInclude Include="vendor\imgui\imstb_rectpack.h" />
+    <ClInclude Include="vendor\imgui\imstb_textedit.h" />
+    <ClInclude Include="vendor\imgui\imstb_truetype.h" />
+    <ClInclude Include="vendor\imgui\misc\cpp\imgui_stdlib.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
