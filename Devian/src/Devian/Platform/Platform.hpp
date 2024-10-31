@@ -1,6 +1,6 @@
 #pragma once
-#include <stdint.h>
 #include <string>
+#include <stdint.h>
 
 namespace DEVIAN {
 	class PlatformLayer {
