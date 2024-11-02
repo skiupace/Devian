@@ -16,7 +16,7 @@ namespace DEVIAN {
 	void Application::Run() noexcept {
 		try {
 			while (true) {
-				m_Platform->Render();
+				m_Platform->RenderWindow();
 				m_Platform->PollEvents();
 			}
 		} catch (const std::exception& ex) {

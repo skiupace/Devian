@@ -12,6 +12,6 @@ namespace DEVIAN {
 		virtual void* GetNativeWindowHandle() { return nullptr; }
 
 		virtual void PollEvents() {}
-		virtual void Render() {}
+		virtual void RenderWindow() {}
 	};
 }

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <UI/DevianUI.hpp>
 #include <GLFW/glfw3.h>
 #include "Platform.hpp"
 
@@ -25,9 +26,10 @@ namespace DEVIAN {
 		virtual void* GetNativeWindowHandle() override;
 
 		virtual void PollEvents() override;
-		virtual void Render() override;
+		virtual void RenderWindow() override;
 
 	private:
 		void* m_NativeWindowHandle;
+		DevianUI* m_DevianUI;
 	};
 }

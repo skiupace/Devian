@@ -135,6 +135,7 @@
   <ItemGroup>
     <ClCompile Include="src\Devian\Core\Application.cpp" />
     <ClCompile Include="src\Devian\Platform\WindowsPlatform.cpp" />
+    <ClCompile Include="src\Devian\UI\DevianUI.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="vendor\imgui\backends\imgui_impl_glfw.cpp" />
     <ClCompile Include="vendor\imgui\backends\imgui_impl_opengl2.cpp" />
@@ -151,6 +152,7 @@
     <ClInclude Include="src\Devian\Core\Core.hpp" />
     <ClInclude Include="src\Devian\Platform\Platform.hpp" />
     <ClInclude Include="src\Devian\Platform\WindowsPlatform.hpp" />
+    <ClInclude Include="src\Devian\UI\DevianUI.hpp" />
     <ClInclude Include="vendor\imgui\backends\imgui_impl_glfw.h" />
     <ClInclude Include="vendor\imgui\backends\imgui_impl_opengl2.h" />
     <ClInclude Include="vendor\imgui\backends\imgui_impl_opengl3.h" />
