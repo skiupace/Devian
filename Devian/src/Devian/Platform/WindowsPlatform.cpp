@@ -47,10 +47,32 @@ namespace DEVIAN {
         glClear(GL_COLOR_BUFFER_BIT);
 
         // Render The Engine UI.
-        m_DevianUI->RenderUI();
+        //m_DevianUI->RenderUI();
 
         // Swap front and back buffers to display the result
         glfwSwapBuffers((GLFWwindow*)m_NativeWindowHandle);
+    }
+
+    std::pair<uint32_t, uint32_t> WindowsPlatformLayer::GetWindowSize() {
+        int width, height;
+        glfwGetWindowSize((GLFWwindow*)m_NativeWindowHandle, &width, &height);
+        return { width, height };
+    }
+
+    bool WindowsPlatformLayer::IsKeyPressed(int keyCode) {
+        return glfwGetKey((GLFWwindow*)m_NativeWindowHandle, keyCode) == GLFW_PRESS;
+    }
+
+    bool WindowsPlatformLayer::IsKeyReleased(int keyCode) {
+        return glfwGetKey((GLFWwindow*)m_NativeWindowHandle, keyCode) == GLFW_RELEASE;
+    }
+
+    bool WindowsPlatformLayer::IsMouseButtonPressed(int mouseButton) {
+        return glfwGetMouseButton((GLFWwindow*)m_NativeWindowHandle, mouseButton) == GLFW_PRESS;
+    }
+
+    bool WindowsPlatformLayer::IsMouseButtonReleased(int mouseButton) {
+        return glfwGetMouseButton((GLFWwindow*)m_NativeWindowHandle, mouseButton) == GLFW_RELEASE;
     }
 
     WindowsPlatformLayer::~WindowsPlatformLayer() {
@@ -59,6 +81,9 @@ namespace DEVIAN {
 
         delete m_NativeWindowHandle;
         delete m_DevianUI;
+
+        m_NativeWindowHandle = nullptr;
+        m_DevianUI = nullptr;
     }
 
     #else

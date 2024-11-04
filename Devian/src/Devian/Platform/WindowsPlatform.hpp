@@ -28,6 +28,13 @@ namespace DEVIAN {
 		virtual void PollEvents() override;
 		virtual void RenderWindow() override;
 
+		virtual std::pair<uint32_t, uint32_t> GetWindowSize() override;
+
+		virtual bool IsKeyPressed(int keyCode) override;
+		virtual bool IsKeyReleased(int keyCode) override;
+		virtual bool IsMouseButtonPressed(int mouseButton) override;
+		virtual bool IsMouseButtonReleased(int mouseButton) override;
+
 	private:
 		void* m_NativeWindowHandle;
 		DevianUI* m_DevianUI;

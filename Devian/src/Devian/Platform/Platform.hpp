@@ -13,5 +13,12 @@ namespace DEVIAN {
 
 		virtual void PollEvents() {}
 		virtual void RenderWindow() {}
+
+		virtual std::pair<uint32_t, uint32_t> GetWindowSize() { return { 0, 0 }; }
+
+		virtual bool IsKeyPressed(int keyCode) { return false; }
+		virtual bool IsKeyReleased(int keyCode) { return false; }
+		virtual bool IsMouseButtonPressed(int mouseButton) { return false; }
+		virtual bool IsMouseButtonReleased(int mouseButton) { return false; }
 	};
 }

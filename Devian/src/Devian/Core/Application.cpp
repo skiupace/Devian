@@ -1,5 +1,4 @@
 #include <iostream>
-#include <GLFW/glfw3.h>
 #include <Platform/WindowsPlatform.hpp>
 #include "Application.hpp"
 
@@ -8,6 +7,7 @@ namespace DEVIAN {
 		#if defined(_WIN32) || defined(_WIN64)
 			m_Platform = new WindowsPlatformLayer();
 			m_Platform->CreateWindow(specs.width, specs.height, specs.title.c_str());
+			m_NativeWindowHandle = m_Platform->GetNativeWindowHandle();
 		#else
 			#error This Engine is Currently Supports Windows Platform Only!
 		#endif
@@ -15,7 +15,7 @@ namespace DEVIAN {
 
 	void Application::Run() noexcept {
 		try {
-			while (true) {
+			while (!glfwWindowShouldClose((GLFWwindow*)m_NativeWindowHandle)) {
 				m_Platform->RenderWindow();
 				m_Platform->PollEvents();
 			}
@@ -25,7 +25,29 @@ namespace DEVIAN {
 		}
 	}
 
+	Application& Application::Get() {
+		static Application instance;
+		return instance;
+	}
+
+	PlatformLayer* Application::GetPlatformLayer() {
+		return m_Platform;
+	}
+
+	void Application::SetWindowSizeCallBack(void(*callBackFunction)(GLFWwindow*, int, int)) {
+		glfwSetWindowSizeCallback((GLFWwindow*)m_NativeWindowHandle, callBackFunction);
+	}
+
+	void Application::SetKeyboardCallBack(void(*callBackFunction)(GLFWwindow*, int, int, int, int)) {
+		//callBackFunction(static_cast<KeyCode>(glfwGetKey(m_NativeWindowHandle, GLFW_KEY_F)));
+		glfwSetKeyCallback((GLFWwindow*)m_NativeWindowHandle, callBackFunction);
+	}
+
 	Application::~Application() {
 		delete m_Platform;
+		delete m_NativeWindowHandle;
+
+		m_Platform = nullptr;
+		m_NativeWindowHandle = nullptr;
 	}
 }

@@ -1,5 +1,7 @@
 #pragma once
 #include <Platform/Platform.hpp>
+#include <Platform/Key.hpp>
+#include <GLFW/glfw3.h>
 
 namespace DEVIAN {
 	struct ApplicationSpecs {
@@ -11,12 +13,20 @@ namespace DEVIAN {
 
 	class Application {
 	public:
+		Application() = default;
 		Application(const ApplicationSpecs& specs);
 		~Application();
 		void Run() noexcept;
 
+		static Application& Get();
+		PlatformLayer* GetPlatformLayer();
+
+		void SetWindowSizeCallBack(void(*callBackFunction)(GLFWwindow*, int, int));
+		void SetKeyboardCallBack(void(*callBackFunction)(GLFWwindow*, int, int, int, int));
+
 	private:
 		ApplicationSpecs m_AppSpecs;
 		PlatformLayer* m_Platform;
+		void* m_NativeWindowHandle;
 	};
 }
