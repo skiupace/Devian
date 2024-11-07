@@ -6,6 +6,9 @@
 # Any .ini File
 *.ini
 
+# Mono Folder
+Mono/
+
 # User-specific files
 *.rsuser
 *.suo
@@ -364,3 +367,4 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/Devian/Test
