@@ -16,7 +16,9 @@ namespace DEVIAN {
 		Application() = default;
 		Application(const ApplicationSpecs& specs);
 		~Application();
-		void Run() noexcept;
+
+		bool IsRunning() noexcept;
+		void Run();
 
 		static Application& Get();
 		PlatformLayer* GetPlatformLayer();

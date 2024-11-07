@@ -8,7 +8,7 @@ namespace DEVIAN {
 		PlatformLayer() = default;
 		virtual ~PlatformLayer() {}
 
-		virtual void CreateWindow(const uint32_t, const uint32_t, const char*) {}
+		virtual void CreateNativeWindow(const uint32_t, const uint32_t, const char*) {}
 		virtual void* GetNativeWindowHandle() { return nullptr; }
 
 		virtual void PollEvents() {}

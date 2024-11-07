@@ -6,16 +6,20 @@ namespace DEVIAN {
 	Application::Application(const ApplicationSpecs& specs) {
 		#if defined(_WIN32) || defined(_WIN64)
 			m_Platform = new WindowsPlatformLayer();
-			m_Platform->CreateWindow(specs.width, specs.height, specs.title.c_str());
+			m_Platform->CreateNativeWindow(specs.width, specs.height, specs.title.c_str());
 			m_NativeWindowHandle = m_Platform->GetNativeWindowHandle();
 		#else
 			#error This Engine is Currently Supports Windows Platform Only!
 		#endif
 	}
 
-	void Application::Run() noexcept {
+	bool Application::IsRunning() noexcept {
+		return !glfwWindowShouldClose((GLFWwindow*)m_NativeWindowHandle);
+	}
+
+	void Application::Run() {
 		try {
-			while (!glfwWindowShouldClose((GLFWwindow*)m_NativeWindowHandle)) {
+			while (IsRunning()) {
 				m_Platform->RenderWindow();
 				m_Platform->PollEvents();
 			}
@@ -44,9 +48,10 @@ namespace DEVIAN {
 	}
 
 	Application::~Application() {
-		delete m_Platform;
-		delete m_NativeWindowHandle;
+		glfwDestroyWindow((GLFWwindow*)m_NativeWindowHandle);
+		glfwTerminate();
 
+		delete m_Platform;
 		m_Platform = nullptr;
 		m_NativeWindowHandle = nullptr;
 	}

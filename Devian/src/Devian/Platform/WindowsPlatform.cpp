@@ -1,5 +1,6 @@
 #include <iostream>
 #include <Core/Core.hpp>
+#include <Utils/FileWatch.hpp>
 #include "WindowsPlatform.hpp"
 
 namespace DEVIAN {
@@ -10,7 +11,7 @@ namespace DEVIAN {
         std::cout << "Mouse Position: (" << xpos << ", " << ypos << ")\n";
     }
 
-    void WindowsPlatformLayer::CreateWindow(const uint32_t width, const uint32_t height, const char* title) {
+    void WindowsPlatformLayer::CreateNativeWindow(const uint32_t width, const uint32_t height, const char* title) {
         if (!glfwInit()) {
             std::cerr << "Failed To Initialize GLFW!" << std::flush;
             return;
@@ -49,6 +50,30 @@ namespace DEVIAN {
         // Render The Engine UI.
         //m_DevianUI->RenderUI();
 
+        filewatch::FileWatch<std::wstring> watch(
+            LR"(Test\ss.txt)",
+            [](const std::wstring& path, const filewatch::Event change_type) {
+                std::wcout << path << L" : ";
+                switch (change_type) {
+                case filewatch::Event::added:
+                    std::cout << "The file was added to the directory." << '\n';
+                    break;
+                case filewatch::Event::removed:
+                    std::cout << "The file was removed from the directory." << '\n';
+                    break;
+                case filewatch::Event::modified:
+                    std::cout << "The file was modified. This can be a change in the time stamp or attributes." << '\n';
+                    break;
+                case filewatch::Event::renamed_old:
+                    std::cout << "The file was renamed and this is the old name." << '\n';
+                    break;
+                case filewatch::Event::renamed_new:
+                    std::cout << "The file was renamed and this is the new name." << '\n';
+                    break;
+                };
+            }
+        );
+
         // Swap front and back buffers to display the result
         glfwSwapBuffers((GLFWwindow*)m_NativeWindowHandle);
     }
@@ -79,9 +104,7 @@ namespace DEVIAN {
         glfwDestroyWindow((GLFWwindow*)m_NativeWindowHandle);
         glfwTerminate();
 
-        delete m_NativeWindowHandle;
         delete m_DevianUI;
-
         m_NativeWindowHandle = nullptr;
         m_DevianUI = nullptr;
     }
