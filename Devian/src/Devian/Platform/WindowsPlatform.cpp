@@ -48,8 +48,16 @@ namespace DEVIAN {
     }
 
     void WindowsPlatformLayer::RenderWindow() {
+        // Get elapsed time since program launch
+        float time = static_cast<float>(glfwGetTime());
+
+        // Vary color based on time
+        float red = (std::sin(time * 0.5f) + 1.0f) / 2.0f;
+        float green = (std::sin(time * 0.3f) + 1.0f) / 2.0f;
+        float blue = (std::sin(time * 0.7f) + 1.0f) / 2.0f;
+
         // Set initial background color
-        glClearColor(0.2f, 0.2f, 0.2f, 1.0f);
+        glClearColor(red, green, blue, 1.0f);
 
         // Clear the buffer with the initial color
         glClear(GL_COLOR_BUFFER_BIT);

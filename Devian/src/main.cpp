@@ -20,7 +20,7 @@ int main(int argc, char** argv) {
     delete testScript;
     testScript = nullptr;
 
-    #if false
+    #if true
     try {
         DEVIAN::ApplicationSpecs specs;
         specs.width = 900;
