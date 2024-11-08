@@ -75,8 +75,8 @@
     <LibraryPath>$(SolutionDir)\Devian\vendor\Mono\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(SolutionDir)\Devian\src\Devian;$(SolutionDir)\Devian\vendor\Mono\include\mono-2.0;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)\Devian\vendor\Mono\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)\Devian\src\Devian;$(SolutionDir)\Devian\vendor\mono\include\mono-2.0;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\Devian\vendor\mono\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -144,6 +144,7 @@
     <ClCompile Include="src\Devian\Core\Application.cpp" />
     <ClCompile Include="src\Devian\Platform\Input.cpp" />
     <ClCompile Include="src\Devian\Platform\WindowsPlatform.cpp" />
+    <ClCompile Include="src\Devian\Script\Script.cpp" />
     <ClCompile Include="src\Devian\UI\DevianUI.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="vendor\imgui\backends\imgui_impl_glfw.cpp" />
@@ -163,6 +164,7 @@
     <ClInclude Include="src\Devian\Platform\Key.hpp" />
     <ClInclude Include="src\Devian\Platform\Platform.hpp" />
     <ClInclude Include="src\Devian\Platform\WindowsPlatform.hpp" />
+    <ClInclude Include="src\Devian\Script\Script.hpp" />
     <ClInclude Include="src\Devian\UI\DevianUI.hpp" />
     <ClInclude Include="src\Devian\Utils\FileWatch.hpp" />
     <ClInclude Include="vendor\glfw\include\GLFW\glfw3.h" />

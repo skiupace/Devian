@@ -22,6 +22,9 @@ namespace DEVIAN {
 		//! Expermental Method.
 		static void MousePositionCallback(GLFWwindow*, double, double);
 
+		//! Debugging Method.
+		static void ErrorCallBack(int, const char*);
+
 		virtual void CreateNativeWindow(const uint32_t, const uint32_t, const char*) override;
 		virtual void* GetNativeWindowHandle() override;
 

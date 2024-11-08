@@ -11,6 +11,10 @@ namespace DEVIAN {
         std::cout << "Mouse Position: (" << xpos << ", " << ypos << ")\n";
     }
 
+    void WindowsPlatformLayer::ErrorCallBack(int error, const char* description) {
+        std::cerr << "GLFW Error! " << error << ": " << description << std::endl;
+    }
+
     void WindowsPlatformLayer::CreateNativeWindow(const uint32_t width, const uint32_t height, const char* title) {
         if (!glfwInit()) {
             std::cerr << "Failed To Initialize GLFW!" << std::flush;
@@ -19,6 +23,9 @@ namespace DEVIAN {
 
         //! Initilize GLFW debug context
         glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, true);
+
+        //! Set GLFW Error CallBack
+        glfwSetErrorCallback(ErrorCallBack);
 
         m_NativeWindowHandle = glfwCreateWindow(width, height, title, NULL, NULL);
         DEVIAN_ASSERT(m_NativeWindowHandle);
