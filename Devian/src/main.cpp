@@ -22,10 +22,11 @@ int main(int argc, char** argv) {
 
     #if true
     try {
-        DEVIAN::ApplicationSpecs specs;
-        specs.width = 900;
-        specs.height = 600;
-        specs.title = "Devian Engine";
+        DEVIAN::ApplicationSpecs specs = {
+            .width = 900,
+            .height = 600,
+            .title = "Devian Engine"
+        };
 
         std::unique_ptr<DEVIAN::Application> App = std::make_unique<DEVIAN::Application>(specs);
         App->SetWindowSizeCallBack(OnApplicationResize);

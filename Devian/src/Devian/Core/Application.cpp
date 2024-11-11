@@ -13,7 +13,7 @@ namespace DEVIAN {
 		#endif
 	}
 
-	bool Application::IsRunning() noexcept {
+	inline bool Application::IsRunning() noexcept {
 		return !glfwWindowShouldClose(*m_NativeWindowHandle.get());
 	}
 

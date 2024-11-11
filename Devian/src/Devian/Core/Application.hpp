@@ -18,7 +18,7 @@ namespace DEVIAN {
 		Application(const ApplicationSpecs& specs);
 		~Application();
 
-		bool IsRunning() noexcept;
+		inline bool IsRunning() noexcept;
 		void Run();
 
 		static Application& Get();
