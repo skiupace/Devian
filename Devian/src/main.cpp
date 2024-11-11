@@ -1,6 +1,8 @@
+#include <memory>
 #include <iostream>
+#include <functional>
 #include <Platform/Key.hpp>
-#include <Script/Script.hpp>
+#include <Scripting/Script.hpp>
 #include <Core/Application.hpp>
 
 static void OnApplicationResize(GLFWwindow* window, int width, int height) {
@@ -16,7 +18,10 @@ static void OnApplicationKeyboardPressed(GLFWwindow* window, int keyCode, int sc
 int main(int argc, char** argv) {
 
     #if true
-    std::unique_ptr<DEVIAN::ScriptingEngine> testScript = std::make_unique<DEVIAN::ScriptingEngine>(R"(C:\Dev\Projects\C++ Projects\Game Engine\Devian\Devian\Resources\Release\net8.0\TestGame.dll)");
+    std::unique_ptr<DEVIAN::ScriptingEngine> testScript = std::make_unique<DEVIAN::ScriptingEngine>(
+        R"(C:\Dev\Projects\C++ Projects\Game Engine\Devian\Devian\Resources\Release\net8.0\TestGame.dll)"
+    );
+
     testScript->ExecuteScript();
     #endif
 
@@ -32,6 +37,11 @@ int main(int argc, char** argv) {
         App->SetWindowSizeCallBack(OnApplicationResize);
         App->SetKeyboardCallBack(OnApplicationKeyboardPressed);
         App->Run();
+
+        [[maybe_unused]] //! Required C++17.
+        auto finally = std::unique_ptr<void, std::function<void(void*)>>(nullptr, [](void*) {
+            // ...
+        });
     } catch (std::exception ex) {
         std::cerr << ex.what() << std::flush;
         return EXIT_FAILURE;

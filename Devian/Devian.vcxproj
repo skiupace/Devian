@@ -145,7 +145,7 @@
     <ClCompile Include="src\Devian\Core\Application.cpp" />
     <ClCompile Include="src\Devian\Platform\Input.cpp" />
     <ClCompile Include="src\Devian\Platform\WindowsPlatform.cpp" />
-    <ClCompile Include="src\Devian\Script\Script.cpp" />
+    <ClCompile Include="src\Devian\Scripting\Script.cpp" />
     <ClCompile Include="src\Devian\UI\DevianUI.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="vendor\imgui\backends\imgui_impl_glfw.cpp" />
@@ -165,7 +165,7 @@
     <ClInclude Include="src\Devian\Platform\Key.hpp" />
     <ClInclude Include="src\Devian\Platform\Platform.hpp" />
     <ClInclude Include="src\Devian\Platform\WindowsPlatform.hpp" />
-    <ClInclude Include="src\Devian\Script\Script.hpp" />
+    <ClInclude Include="src\Devian\Scripting\Script.hpp" />
     <ClInclude Include="src\Devian\UI\DevianUI.hpp" />
     <ClInclude Include="src\Devian\Utils\FileWatch.hpp" />
     <ClInclude Include="vendor\glfw\include\GLFW\glfw3.h" />

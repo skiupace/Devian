@@ -57,7 +57,7 @@
     <ClCompile Include="vendor\imgui\imgui_widgets.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Devian\Script\Script.cpp">
+    <ClCompile Include="src\Devian\Scripting\Script.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -125,7 +125,7 @@
     <ClInclude Include="src\Devian\Utils\FileWatch.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Devian\Script\Script.hpp">
+    <ClInclude Include="src\Devian\Scripting\Script.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
