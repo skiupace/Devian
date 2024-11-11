@@ -1,8 +1,9 @@
 #pragma once
+#include "Platform.hpp"
 
 #include <UI/DevianUI.hpp>
 #include <GLFW/glfw3.h>
-#include "Platform.hpp"
+#include <memory>
 
 #ifndef IS_GLFW_INCLUDED
 	#ifdef GLFW_VERSION_MAJOR
@@ -16,14 +17,12 @@ namespace DEVIAN {
 		WindowsPlatformLayer();
 		~WindowsPlatformLayer();
 
-		//! Debugging Method.
-		//x GLenum glCheckError_(const char*, int);
-
 		//! Expermental Method.
-		static void MousePositionCallback(GLFWwindow*, double, double);
+					// It's called attribute specifier
+		static void [[maybe_unused]] MousePositionCallback(GLFWwindow*, double, double);
 
-		//! Debugging Method.
-		static void ErrorCallBack(int, const char*);
+		//! GLFW Error Logging Method.
+		static void ErrorCallBack(int error, const char*);
 
 		virtual void CreateNativeWindow(const uint32_t, const uint32_t, const char*) override;
 		virtual void* GetNativeWindowHandle() override;
@@ -39,7 +38,7 @@ namespace DEVIAN {
 		virtual bool IsMouseButtonReleased(int mouseButton) override;
 
 	private:
-		void* m_NativeWindowHandle;
-		DevianUI* m_DevianUI;
+		std::unique_ptr<GLFWwindow*> m_NativeWindowHandle;
+		std::unique_ptr<DevianUI> m_DevianUI;
 	};
 }

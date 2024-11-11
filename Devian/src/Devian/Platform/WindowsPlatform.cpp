@@ -27,20 +27,20 @@ namespace DEVIAN {
         //! Set GLFW Error CallBack
         glfwSetErrorCallback(ErrorCallBack);
 
-        m_NativeWindowHandle = glfwCreateWindow(width, height, title, NULL, NULL);
+        m_NativeWindowHandle = std::make_unique<GLFWwindow*>(glfwCreateWindow(width, height, title, NULL, NULL));
         DEVIAN_ASSERT(m_NativeWindowHandle);
 
-        glfwMakeContextCurrent((GLFWwindow*)m_NativeWindowHandle);
+        glfwMakeContextCurrent(*m_NativeWindowHandle.get());
         glfwSwapInterval(1); // Enable vsync
 
         // Initilize ImGui Library.
-        m_DevianUI->ImGuiInit(m_NativeWindowHandle);
+        m_DevianUI->ImGuiInit(*m_NativeWindowHandle.get());
 
         //x glfwSetCursorPosCallback((GLFWwindow*)m_NativeWindowHandle, MousePositionCallback);
     }
 
     void* WindowsPlatformLayer::GetNativeWindowHandle() {
-        return m_NativeWindowHandle;
+        return static_cast<void*>(*m_NativeWindowHandle.get());
     }
 
     void WindowsPlatformLayer::PollEvents() {
@@ -66,7 +66,7 @@ namespace DEVIAN {
         //m_DevianUI->RenderUI();
 
         filewatch::FileWatch<std::wstring> watch(
-            LR"(Test\ss.txt)",
+            LR"(C:\Dev\Projects\C++ Projects\Game Engine\Devian\Devian\Test)",
             [](const std::wstring& path, const filewatch::Event change_type) {
                 std::wcout << path << L" : ";
                 switch (change_type) {
@@ -90,36 +90,35 @@ namespace DEVIAN {
         );
 
         // Swap front and back buffers to display the result
-        glfwSwapBuffers((GLFWwindow*)m_NativeWindowHandle);
+        glfwSwapBuffers(*m_NativeWindowHandle.get());
     }
 
     std::pair<uint32_t, uint32_t> WindowsPlatformLayer::GetWindowSize() {
         int width, height;
-        glfwGetWindowSize((GLFWwindow*)m_NativeWindowHandle, &width, &height);
+        glfwGetWindowSize(*m_NativeWindowHandle.get(), &width, &height);
         return { width, height };
     }
 
     bool WindowsPlatformLayer::IsKeyPressed(int keyCode) {
-        return glfwGetKey((GLFWwindow*)m_NativeWindowHandle, keyCode) == GLFW_PRESS;
+        return glfwGetKey(*m_NativeWindowHandle.get(), keyCode) == GLFW_PRESS;
     }
 
     bool WindowsPlatformLayer::IsKeyReleased(int keyCode) {
-        return glfwGetKey((GLFWwindow*)m_NativeWindowHandle, keyCode) == GLFW_RELEASE;
+        return glfwGetKey(*m_NativeWindowHandle.get(), keyCode) == GLFW_RELEASE;
     }
 
     bool WindowsPlatformLayer::IsMouseButtonPressed(int mouseButton) {
-        return glfwGetMouseButton((GLFWwindow*)m_NativeWindowHandle, mouseButton) == GLFW_PRESS;
+        return glfwGetMouseButton(*m_NativeWindowHandle.get(), mouseButton) == GLFW_PRESS;
     }
 
     bool WindowsPlatformLayer::IsMouseButtonReleased(int mouseButton) {
-        return glfwGetMouseButton((GLFWwindow*)m_NativeWindowHandle, mouseButton) == GLFW_RELEASE;
+        return glfwGetMouseButton(*m_NativeWindowHandle.get(), mouseButton) == GLFW_RELEASE;
     }
 
     WindowsPlatformLayer::~WindowsPlatformLayer() {
-        glfwDestroyWindow((GLFWwindow*)m_NativeWindowHandle);
+        glfwDestroyWindow(*m_NativeWindowHandle.release());
         glfwTerminate();
 
-        delete m_DevianUI;
         m_NativeWindowHandle = nullptr;
         m_DevianUI = nullptr;
     }

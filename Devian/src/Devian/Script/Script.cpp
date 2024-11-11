@@ -2,7 +2,7 @@
 
 namespace DEVIAN {
     ScriptingEngine::ScriptingEngine(const char* path) {
-        mono_set_assemblies_path("vendor/mono/lib");
+        mono_set_assemblies_path(R"(C:\Dev\Projects\C++ Projects\Game Engine\Devian\Devian\vendor\mono\lib)");
         domain = mono_jit_init("DevianScriptingEngine");
 
         assembly = mono_domain_assembly_open(domain, path);

@@ -15,10 +15,10 @@ static void OnApplicationKeyboardPressed(GLFWwindow* window, int keyCode, int sc
 
 int main(int argc, char** argv) {
 
-    DEVIAN::ScriptingEngine* testScript = new DEVIAN::ScriptingEngine("Resources\\Release\\net8.0\\TestGame.dll");
+    #if true
+    std::unique_ptr<DEVIAN::ScriptingEngine> testScript = std::make_unique<DEVIAN::ScriptingEngine>(R"(C:\Dev\Projects\C++ Projects\Game Engine\Devian\Devian\Resources\Release\net8.0\TestGame.dll)");
     testScript->ExecuteScript();
-    delete testScript;
-    testScript = nullptr;
+    #endif
 
     #if true
     try {
@@ -27,13 +27,10 @@ int main(int argc, char** argv) {
         specs.height = 600;
         specs.title = "Devian Engine";
 
-        DEVIAN::Application* App = new DEVIAN::Application(specs);
+        std::unique_ptr<DEVIAN::Application> App = std::make_unique<DEVIAN::Application>(specs);
         App->SetWindowSizeCallBack(OnApplicationResize);
         App->SetKeyboardCallBack(OnApplicationKeyboardPressed);
-
         App->Run();
-        delete App;
-        App = nullptr;
     } catch (std::exception ex) {
         std::cerr << ex.what() << std::flush;
         return EXIT_FAILURE;

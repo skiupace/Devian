@@ -1,7 +1,8 @@
 #pragma once
 #include <Platform/Platform.hpp>
-//#include <Platform/Key.hpp>
+#include <Platform/Key.hpp>
 #include <GLFW/glfw3.h>
+#include <memory>
 
 namespace DEVIAN {
 	struct ApplicationSpecs {
@@ -28,7 +29,7 @@ namespace DEVIAN {
 
 	private:
 		ApplicationSpecs m_AppSpecs;
-		PlatformLayer* m_Platform;
-		void* m_NativeWindowHandle;
+		std::unique_ptr<PlatformLayer> m_Platform;
+		std::unique_ptr<GLFWwindow*> m_NativeWindowHandle;
 	};
 }

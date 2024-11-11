@@ -5,16 +5,16 @@
 namespace DEVIAN {
 	Application::Application(const ApplicationSpecs& specs) {
 		#if defined(_WIN32) || defined(_WIN64)
-			m_Platform = new WindowsPlatformLayer();
+			m_Platform = std::make_unique<WindowsPlatformLayer>();
 			m_Platform->CreateNativeWindow(specs.width, specs.height, specs.title.c_str());
-			m_NativeWindowHandle = m_Platform->GetNativeWindowHandle();
+			m_NativeWindowHandle = std::make_unique<GLFWwindow*>(static_cast<GLFWwindow*>(m_Platform->GetNativeWindowHandle()));
 		#else
 			#error This Engine is Currently Supports Windows Platform Only!
 		#endif
 	}
 
 	bool Application::IsRunning() noexcept {
-		return !glfwWindowShouldClose((GLFWwindow*)m_NativeWindowHandle);
+		return !glfwWindowShouldClose(*m_NativeWindowHandle.get());
 	}
 
 	void Application::Run() {
@@ -35,23 +35,22 @@ namespace DEVIAN {
 	}
 
 	PlatformLayer* Application::GetPlatformLayer() {
-		return m_Platform;
+		return m_Platform.get();
 	}
 
 	void Application::SetWindowSizeCallBack(void(*callBackFunction)(GLFWwindow*, int, int)) {
-		glfwSetWindowSizeCallback((GLFWwindow*)m_NativeWindowHandle, callBackFunction);
+		glfwSetWindowSizeCallback(*m_NativeWindowHandle.get(), callBackFunction);
 	}
 
 	void Application::SetKeyboardCallBack(void(*callBackFunction)(GLFWwindow*, int, int, int, int)) {
 		//callBackFunction(static_cast<KeyCode>(glfwGetKey(m_NativeWindowHandle, GLFW_KEY_F)));
-		glfwSetKeyCallback((GLFWwindow*)m_NativeWindowHandle, callBackFunction);
+		glfwSetKeyCallback(*m_NativeWindowHandle.get(), callBackFunction);
 	}
 
 	Application::~Application() {
-		glfwDestroyWindow((GLFWwindow*)m_NativeWindowHandle);
+		glfwDestroyWindow(*m_NativeWindowHandle.release());
 		glfwTerminate();
 
-		delete m_Platform;
 		m_Platform = nullptr;
 		m_NativeWindowHandle = nullptr;
 	}
