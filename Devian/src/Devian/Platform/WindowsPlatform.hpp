@@ -18,8 +18,8 @@ namespace DEVIAN {
 		~WindowsPlatformLayer();
 
 		//! Expermental Method.
-					// It's called attribute specifier
-		static void [[maybe_unused]] MousePositionCallback(GLFWwindow*, double, double);
+		[[maybe_unused]] // It's called attribute specifier.
+		static void MousePositionCallback(GLFWwindow*, double, double);
 
 		//! GLFW Error Logging Method.
 		static void ErrorCallBack(int error, const char*);

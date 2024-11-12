@@ -38,7 +38,7 @@ int main(int argc, char** argv) {
         App->SetKeyboardCallBack(OnApplicationKeyboardPressed);
         App->Run();
 
-        [[maybe_unused]] //! Required C++17.
+        [[maybe_unused]] //! Require C++17.
         auto finally = std::unique_ptr<void, std::function<void(void*)>>(nullptr, [](void*) {
             // ...
         });
