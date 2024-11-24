@@ -5,7 +5,7 @@
 
 namespace DEVIAN {
     #if IS_GLFW_INCLUDED
-    WindowsPlatformLayer::WindowsPlatformLayer() : m_NativeWindowHandle(nullptr), m_DevianUI(new DevianUI()) {}
+    WindowsPlatformLayer::WindowsPlatformLayer() : m_DevianUI(new DevianUI()), m_NativeWindowHandle(nullptr) {}
 
     void WindowsPlatformLayer::MousePositionCallback(GLFWwindow* window, double xpos, double ypos) {
         std::cout << "Mouse Position: (" << xpos << ", " << ypos << ")\n";
@@ -119,8 +119,8 @@ namespace DEVIAN {
         glfwDestroyWindow(*m_NativeWindowHandle.release());
         glfwTerminate();
 
-        m_NativeWindowHandle = nullptr;
         m_DevianUI = nullptr;
+        m_NativeWindowHandle = nullptr;
     }
 
     #else

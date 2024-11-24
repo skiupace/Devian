@@ -38,7 +38,7 @@ namespace DEVIAN {
 		virtual bool IsMouseButtonReleased(int mouseButton) override;
 
 	private:
-		std::unique_ptr<GLFWwindow*> m_NativeWindowHandle;
 		std::unique_ptr<DevianUI> m_DevianUI;
+		std::unique_ptr<GLFWwindow*> m_NativeWindowHandle;
 	};
 }

@@ -10,9 +10,11 @@ static void OnApplicationResize(GLFWwindow* window, int width, int height) {
 }
 
 static void OnApplicationKeyboardPressed(GLFWwindow* window, int keyCode, int scanCode, int action, int mods) {
-    if (static_cast<DEVIAN::KeyCode>(keyCode) == DEVIAN::KeyCode::F)
-        std::cout << "F Key has been pressed!\n";
-    //std::cout << "Key " << glfwGetKeyName(keyCode, scanCode) << " has been pressed!\n";
+    try {
+        printf("Key %s has been pressed!\n", glfwGetKeyName(keyCode, scanCode));
+    } catch (std::exception ex) {
+        std::cerr << ex.what() << std::flush;
+    }
 }
 
 int main(int argc, char** argv) {
@@ -39,8 +41,8 @@ int main(int argc, char** argv) {
         App->Run();
 
         [[maybe_unused]] //! Require C++17.
-        auto finally = std::unique_ptr<void, std::function<void(void*)>>(nullptr, [](void*) {
-            // ...
+        auto finally = std::unique_ptr<void, std::function<void(void*)>>(nullptr, [&App](void*) {
+            App = nullptr;
         });
     } catch (std::exception ex) {
         std::cerr << ex.what() << std::flush;
