@@ -145,6 +145,7 @@
     <ClCompile Include="src\Devian\Core\Application.cpp" />
     <ClCompile Include="src\Devian\Platform\Input.cpp" />
     <ClCompile Include="src\Devian\Platform\WindowsPlatform.cpp" />
+    <ClCompile Include="src\Devian\Renderer\Camera3D.cpp" />
     <ClCompile Include="src\Devian\Scripting\Script.cpp" />
     <ClCompile Include="src\Devian\UI\DevianUI.cpp" />
     <ClCompile Include="src\main.cpp" />
@@ -160,11 +161,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Devian\Core\Application.hpp" />
+    <ClInclude Include="src\Devian\Core\Buffer.hpp" />
     <ClInclude Include="src\Devian\Core\Core.hpp" />
     <ClInclude Include="src\Devian\Platform\Input.hpp" />
     <ClInclude Include="src\Devian\Platform\Key.hpp" />
     <ClInclude Include="src\Devian\Platform\Platform.hpp" />
     <ClInclude Include="src\Devian\Platform\WindowsPlatform.hpp" />
+    <ClInclude Include="src\Devian\Renderer\GraphicsContext.hpp" />
+    <ClInclude Include="src\Devian\Renderer\Camera3D.hpp" />
     <ClInclude Include="src\Devian\Scripting\Script.hpp" />
     <ClInclude Include="src\Devian\UI\DevianUI.hpp" />
     <ClInclude Include="src\Devian\Utils\FileWatch.hpp" />

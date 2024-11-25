@@ -1,16 +1,32 @@
 #include <iostream>
+#include <Core/Core.hpp>
 #include <Platform/WindowsPlatform.hpp>
 #include "Application.hpp"
 
 namespace DEVIAN {
 	Application::Application(const ApplicationSpecs& specs) {
 		#if defined(_WIN32) || defined(_WIN64)
+			m_Instance = this;
 			m_Platform = std::make_unique<WindowsPlatformLayer>();
 			m_Platform->CreateNativeWindow(specs.width, specs.height, specs.title.c_str());
 			m_NativeWindowHandle = std::make_unique<GLFWwindow*>(static_cast<GLFWwindow*>(m_Platform->GetNativeWindowHandle()));
 		#else
 			#error This Engine is Currently Supports Windows Platform Only!
 		#endif
+
+		switch (specs.API) {
+		case OPENGL:
+			// m_GraphicsContext = std::make_unique<GL::GLGraphicsContext>();
+			// m_GraphicsContext->Init(m_Platform->GetNativeWindowHandle());
+			break;
+
+		case VULKAN:
+			DEVIAN_ASSERT_MSG(false, "Vulkan Not Supported Yet!");
+			break;
+
+		case NONE:
+			DEVIAN_ASSERT_MSG(false, "Failed to specify garphics api");
+		}
 	}
 
 	inline bool Application::IsRunning() noexcept {
@@ -30,26 +46,47 @@ namespace DEVIAN {
 	}
 
 	Application& Application::Get() {
-		static Application instance;
-		return instance;
+		return *m_Instance;
 	}
 
 	PlatformLayer* Application::GetPlatformLayer() {
 		return m_Platform.get();
 	}
 
-	void Application::SetWindowSizeCallBack(void(*callBackFunction)(GLFWwindow*, int, int)) {
-		glfwSetWindowSizeCallback(*m_NativeWindowHandle.get(), callBackFunction);
+	ApplicationSpecs Application::GetApplicationSpecs() {
+		return m_AppSpecs;
 	}
 
-	void Application::SetKeyboardCallBack(void(*callBackFunction)(GLFWwindow*, int, int, int, int)) {
-		//callBackFunction(static_cast<KeyCode>(glfwGetKey(m_NativeWindowHandle, GLFW_KEY_F)));
-		glfwSetKeyCallback(*m_NativeWindowHandle.get(), callBackFunction);
+	void Application::SetWidth(uint32_t width) {
+		m_AppSpecs.width = width;
+	}
+
+	void Application::SetHeight(uint32_t height) {
+		m_AppSpecs.width = height;
+	}
+
+	void Application::SetWindowSizeCallBack(const WindowSizeCallBackFuncPtr& func) {
+		m_WindowSizeCallBackFuncPtr = func;
+	}
+
+	void Application::SetKeyboardCallBack(const KeyboardCallBackFuncPtr& func) {
+		m_KeyboardCallBackFuncPtr = func;
+	}
+
+	WindowSizeCallBackFuncPtr Application::GetWindowSizeCallBack() {
+		return m_WindowSizeCallBackFuncPtr;
+	}
+
+	KeyboardCallBackFuncPtr Application::GetKeyboardCallBack() {
+		return m_KeyboardCallBackFuncPtr;
 	}
 
 	Application::~Application() {
 		glfwDestroyWindow(*m_NativeWindowHandle.release());
 		glfwTerminate();
+
+		delete m_Instance;
+		m_Instance = nullptr;
 
 		m_Platform = nullptr;
 		m_NativeWindowHandle = nullptr;

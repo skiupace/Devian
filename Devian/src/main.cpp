@@ -5,13 +5,13 @@
 #include <Scripting/Script.hpp>
 #include <Core/Application.hpp>
 
-static void OnApplicationResize(GLFWwindow* window, int width, int height) {
+static void OnApplicationResize(int width, int height) {
     std::cout << "Width: " << width << ", Height: " << height << '\n';
 }
 
-static void OnApplicationKeyboardPressed(GLFWwindow* window, int keyCode, int scanCode, int action, int mods) {
+static void OnApplicationKeyboardPressed(DEVIAN::KeyCode keyCode) {
     try {
-        printf("Key %s has been pressed!\n", glfwGetKeyName(keyCode, scanCode));
+        printf("Key %s has been pressed!\n", glfwGetKeyName(static_cast<int>(keyCode), 0));
     } catch (std::exception ex) {
         std::cerr << ex.what() << std::flush;
     }

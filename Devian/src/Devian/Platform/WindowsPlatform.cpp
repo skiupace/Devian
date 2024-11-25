@@ -1,7 +1,25 @@
 #include <iostream>
 #include <Core/Core.hpp>
+#include <Core/Application.hpp>
 #include <Utils/FileWatch.hpp>
 #include "WindowsPlatform.hpp"
+
+namespace DEVIAN {
+    void WindowResizeCallBack(GLFWwindow* window, int width, int height) {
+        Application& App = Application::Get();
+        // GL::GLCommands::SetViewPort(width, height);
+
+        WindowSizeCallBackFuncPtr windowSizeCallBackFuncPtr = Application::Get().GetWindowSizeCallBack();
+        if (windowSizeCallBackFuncPtr)
+            windowSizeCallBackFuncPtr(width, height);
+    }
+
+    void KeyboardCallBack(GLFWwindow* window, int key, int scancode, int action, int mods) {
+        KeyboardCallBackFuncPtr keyboardCallBackFuncPtr = Application::Get().GetKeyboardCallBack();
+        if (keyboardCallBackFuncPtr)
+            keyboardCallBackFuncPtr((KeyCode)key);
+    }
+}
 
 namespace DEVIAN {
     #if IS_GLFW_INCLUDED
@@ -32,6 +50,9 @@ namespace DEVIAN {
 
         glfwMakeContextCurrent(*m_NativeWindowHandle.get());
         glfwSwapInterval(1); // Enable vsync
+
+        glfwSetWindowSizeCallback(*m_NativeWindowHandle.get(), WindowResizeCallBack);
+        glfwSetKeyCallback(*m_NativeWindowHandle.get(), KeyboardCallBack);
 
         // Initilize ImGui Library.
         m_DevianUI->ImGuiInit(*m_NativeWindowHandle.get());
