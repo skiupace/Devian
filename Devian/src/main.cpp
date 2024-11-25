@@ -1,6 +1,7 @@
 #include <memory>
 #include <iostream>
 #include <functional>
+#include <GLFW/glfw3.h>
 #include <Platform/Key.hpp>
 #include <Scripting/Script.hpp>
 #include <Core/Application.hpp>

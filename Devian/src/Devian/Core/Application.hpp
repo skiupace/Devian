@@ -2,7 +2,6 @@
 #include <Renderer/GraphicsContext.hpp>
 #include <Platform/Platform.hpp>
 #include <Platform/Key.hpp>
-#include <GLFW/glfw3.h>
 #include <functional>
 #include <memory>
 
@@ -48,7 +47,6 @@ namespace DEVIAN {
 	private:
 		ApplicationSpecs m_AppSpecs;
 		std::unique_ptr<PlatformLayer> m_Platform;
-		std::unique_ptr<GLFWwindow*> m_NativeWindowHandle;
 		std::unique_ptr<GraphicsContext> m_GraphicsContext;
 
 		// CallBacks

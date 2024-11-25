@@ -1,7 +1,9 @@
+#include "Application.hpp"
+
 #include <iostream>
+#include <GLFW/glfw3.h>
 #include <Core/Core.hpp>
 #include <Platform/WindowsPlatform.hpp>
-#include "Application.hpp"
 
 namespace DEVIAN {
 	Application::Application(const ApplicationSpecs& specs) {
@@ -9,7 +11,6 @@ namespace DEVIAN {
 			m_Instance = this;
 			m_Platform = std::make_unique<WindowsPlatformLayer>();
 			m_Platform->CreateNativeWindow(specs.width, specs.height, specs.title.c_str());
-			m_NativeWindowHandle = std::make_unique<GLFWwindow*>(static_cast<GLFWwindow*>(m_Platform->GetNativeWindowHandle()));
 		#else
 			#error This Engine is Currently Supports Windows Platform Only!
 		#endif
@@ -30,7 +31,7 @@ namespace DEVIAN {
 	}
 
 	inline bool Application::IsRunning() noexcept {
-		return !glfwWindowShouldClose(*m_NativeWindowHandle.get());
+		return !glfwWindowShouldClose(static_cast<GLFWwindow*>(m_Platform->GetNativeWindowHandle()));
 	}
 
 	void Application::Run() {
@@ -82,13 +83,7 @@ namespace DEVIAN {
 	}
 
 	Application::~Application() {
-		glfwDestroyWindow(*m_NativeWindowHandle.release());
-		glfwTerminate();
-
-		delete m_Instance;
 		m_Instance = nullptr;
-
 		m_Platform = nullptr;
-		m_NativeWindowHandle = nullptr;
 	}
 }

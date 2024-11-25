@@ -1,8 +1,9 @@
+#include "WindowsPlatform.hpp"
+
 #include <iostream>
 #include <Core/Core.hpp>
 #include <Core/Application.hpp>
 #include <Utils/FileWatch.hpp>
-#include "WindowsPlatform.hpp"
 
 namespace DEVIAN {
     void WindowResizeCallBack(GLFWwindow* window, int width, int height) {
