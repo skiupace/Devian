@@ -6,7 +6,7 @@
 #include <Platform/WindowsPlatform.hpp>
 
 namespace DEVIAN {
-	Application::Application(const ApplicationSpecs& specs) {
+	Application::Application(const ApplicationSpecs& specs) : m_AppSpecs(specs) {
 		#if defined(_WIN32) || defined(_WIN64)
 			m_Instance = this;
 			m_Platform = std::make_unique<WindowsPlatformLayer>();
