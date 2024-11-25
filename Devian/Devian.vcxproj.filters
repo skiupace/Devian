@@ -27,7 +27,7 @@
     <ClCompile Include="src\Devian\UI\DevianUI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Devian\Platform\Input.cpp">
+    <ClCompile Include="src\Devian\Core\Input.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="vendor\imgui\backends\imgui_impl_glfw.cpp">
@@ -89,10 +89,10 @@
     <ClInclude Include="src\Devian\UI\DevianUI.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Devian\Platform\Input.hpp">
+    <ClInclude Include="src\Devian\Core\Input.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Devian\Platform\Key.hpp">
+    <ClInclude Include="src\Devian\Core\Key.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="vendor\imgui\backends\imgui_impl_glfw.h">

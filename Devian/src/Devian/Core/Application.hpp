@@ -1,7 +1,7 @@
 #pragma once
 #include <Renderer/GraphicsContext.hpp>
 #include <Platform/Platform.hpp>
-#include <Platform/Key.hpp>
+#include <Core/Key.hpp>
 #include <functional>
 #include <memory>
 
