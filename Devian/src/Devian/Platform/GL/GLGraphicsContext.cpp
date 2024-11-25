@@ -8,15 +8,17 @@ namespace DEVIAN {
 	namespace GL {
 		void GLGraphicsContext::Init(void* NativeWindowHandle) {
 			// Make Context
-			glfwMakeContextCurrent((GLFWwindow*)NativeWindowHandle);
+			glfwMakeContextCurrent(static_cast<GLFWwindow*>(NativeWindowHandle));
 
 			// Init Glad
 			DEVIAN_ASSERT_MSG(gladLoadGLLoader((GLADloadproc)glfwGetProcAddress), "Failed to initialize GLAD");
 
 			// Set Viewport
-			int w, h;
-			glfwGetWindowSize((GLFWwindow*)NativeWindowHandle, &w, &h);
-			glViewport(0, 0, w, h);
+			int width;
+			int height;
+
+			glfwGetWindowSize((GLFWwindow*)NativeWindowHandle, &width, &height);
+			glViewport(0, 0, width, height);
 		}
 
 		void GLGraphicsContext::SwapBuffers(void* NativeWindowHandle) {

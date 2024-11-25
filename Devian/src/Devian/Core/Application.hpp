@@ -16,7 +16,7 @@ namespace DEVIAN {
 		uint32_t width;
 		uint32_t height;
 		std::string title;
-		GraphicsAPI API = OPENGL;
+		GraphicsAPI api = OPENGL;
 	};
 
 	using WindowSizeCallBackFuncPtr = std::function<void(int, int)>;

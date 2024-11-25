@@ -3,7 +3,7 @@
 
 namespace DEVIAN {
 	namespace GL {
-		class GLGraphicsContext : public DEVIAN::GraphicsContext {
+		class GLGraphicsContext : public GraphicsContext {
 		public:
 			virtual void Init(void*) override;
 			virtual void SwapBuffers(void*) override;

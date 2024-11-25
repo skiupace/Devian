@@ -18,7 +18,7 @@ namespace DEVIAN {
 			#error This Engine is Currently Supports Windows Platform Only!
 		#endif
 
-		switch (specs.API) {
+		switch (specs.api) {
 		case OPENGL:
 			m_GraphicsContext = std::make_unique<GL::GLGraphicsContext>();
 			m_GraphicsContext->Init(m_Platform->GetNativeWindowHandle());
