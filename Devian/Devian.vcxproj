@@ -145,6 +145,14 @@
   <ItemGroup>
     <ClCompile Include="src\Devian\Core\Application.cpp" />
     <ClCompile Include="src\Devian\Core\Input.cpp" />
+    <ClCompile Include="src\Devian\Platform\GL\GLCommands.cpp" />
+    <ClCompile Include="src\Devian\Platform\GL\GLGraphicsContext.cpp" />
+    <ClCompile Include="src\Devian\Platform\GL\GLIndexBuffer.cpp" />
+    <ClCompile Include="src\Devian\Platform\GL\GLPipeline.cpp" />
+    <ClCompile Include="src\Devian\Platform\GL\GLShader.cpp" />
+    <ClCompile Include="src\Devian\Platform\GL\GLUniformBuffer.cpp" />
+    <ClCompile Include="src\Devian\Platform\GL\GLVertexArray.cpp" />
+    <ClCompile Include="src\Devian\Platform\GL\GLVertexBuffer.cpp" />
     <ClCompile Include="src\Devian\Platform\WindowsPlatform.cpp" />
     <ClCompile Include="src\Devian\Renderer\Camera3D.cpp" />
     <ClCompile Include="src\Devian\Scripting\Script.cpp" />
@@ -169,6 +177,15 @@
     <ClInclude Include="src\Devian\Core\Core.hpp" />
     <ClInclude Include="src\Devian\Core\Input.hpp" />
     <ClInclude Include="src\Devian\Core\Key.hpp" />
+    <ClInclude Include="src\Devian\Platform\GL\GLCommands.hpp" />
+    <ClInclude Include="src\Devian\Platform\GL\GLGraphicsContext.hpp" />
+    <ClInclude Include="src\Devian\Platform\GL\GLIndexBuffer.hpp" />
+    <ClInclude Include="src\Devian\Platform\GL\GLObject.hpp" />
+    <ClInclude Include="src\Devian\Platform\GL\GLPipeline.hpp" />
+    <ClInclude Include="src\Devian\Platform\GL\GLShader.hpp" />
+    <ClInclude Include="src\Devian\Platform\GL\GLUniformBuffer.hpp" />
+    <ClInclude Include="src\Devian\Platform\GL\GLVertexArray.hpp" />
+    <ClInclude Include="src\Devian\Platform\GL\GLVertexBuffer.hpp" />
     <ClInclude Include="src\Devian\Platform\Platform.hpp" />
     <ClInclude Include="src\Devian\Platform\WindowsPlatform.hpp" />
     <ClInclude Include="src\Devian\Renderer\GraphicsContext.hpp" />

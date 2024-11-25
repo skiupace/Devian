@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 
 #if defined(_WIN32) || defined(_WIN64)
 	#define DEVIAN_ASSERT(cond) if (cond){} else { std::cerr << "Assertion Failed!" << std::flush; __debugbreak; }

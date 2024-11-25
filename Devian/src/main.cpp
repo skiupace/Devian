@@ -51,6 +51,5 @@ int main(int argc, char** argv) {
     }
     #endif
 
-	std::cin.get();
 	return EXIT_SUCCESS;
 }

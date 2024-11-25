@@ -5,6 +5,9 @@
 #include <Core/Core.hpp>
 #include <Platform/WindowsPlatform.hpp>
 
+#include <Platform/GL/GLCommands.hpp>
+#include <Platform/GL/GLGraphicsContext.hpp>
+
 namespace DEVIAN {
 	Application::Application(const ApplicationSpecs& specs) : m_AppSpecs(specs) {
 		#if defined(_WIN32) || defined(_WIN64)
@@ -17,8 +20,8 @@ namespace DEVIAN {
 
 		switch (specs.API) {
 		case OPENGL:
-			// m_GraphicsContext = std::make_unique<GL::GLGraphicsContext>();
-			// m_GraphicsContext->Init(m_Platform->GetNativeWindowHandle());
+			m_GraphicsContext = std::make_unique<GL::GLGraphicsContext>();
+			m_GraphicsContext->Init(m_Platform->GetNativeWindowHandle());
 			break;
 
 		case VULKAN:
