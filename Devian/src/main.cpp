@@ -3,7 +3,6 @@
 #include <functional>
 #include <GLFW/glfw3.h>
 #include <Core/Key.hpp>
-#include <UI/DevianUI.hpp>
 #include <Scripting/Script.hpp>
 #include <Core/Application.hpp>
 
