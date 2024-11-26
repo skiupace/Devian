@@ -3,6 +3,7 @@
 #include <functional>
 #include <GLFW/glfw3.h>
 #include <Core/Key.hpp>
+#include <UI/DevianUI.hpp>
 #include <Scripting/Script.hpp>
 #include <Core/Application.hpp>
 
@@ -36,14 +37,14 @@ int main(int argc, char** argv) {
             .title = "Devian Engine"
         };
 
-        std::unique_ptr<DEVIAN::Application> App = std::make_unique<DEVIAN::Application>(specs);
-        App->SetWindowSizeCallBack(OnApplicationResize);
-        App->SetKeyboardCallBack(OnApplicationKeyboardPressed);
-        App->Run();
+        std::unique_ptr<DEVIAN::Application> app = std::make_unique<DEVIAN::Application>(specs);
+        app->SetWindowSizeCallBack(OnApplicationResize);
+        app->SetKeyboardCallBack(OnApplicationKeyboardPressed); 
+        app->Run();
 
         [[maybe_unused]] //! Require C++17.
-        auto finally = std::unique_ptr<void, std::function<void(void*)>>(nullptr, [&App](void*) {
-            App = nullptr;
+        auto finally = std::unique_ptr<void, std::function<void(void*)>>(nullptr, [&app](void*) {
+            app = nullptr;
         });
     } catch (std::exception ex) {
         std::cerr << ex.what() << std::flush;
