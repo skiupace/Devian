@@ -24,7 +24,7 @@ namespace DEVIAN {
 
 namespace DEVIAN {
     #if IS_GLFW_INCLUDED
-    WindowsPlatformLayer::WindowsPlatformLayer() : m_DevianUI(std::make_unique<DevianUI>()), m_NativeWindowHandle(nullptr) {}
+    WindowsPlatformLayer::WindowsPlatformLayer() : m_EditorLayer(std::make_unique<EditorLayer>()), m_NativeWindowHandle(nullptr) {}
 
     void WindowsPlatformLayer::MousePositionCallback(GLFWwindow* window, double xpos, double ypos) {
         std::cout << "Mouse Position: (" << xpos << ", " << ypos << ")\n";
@@ -56,7 +56,7 @@ namespace DEVIAN {
         glfwSetKeyCallback(*m_NativeWindowHandle.get(), KeyboardCallBack);
 
         // Initilize ImGui Library.
-        m_DevianUI->ImGuiInit(*m_NativeWindowHandle.get());
+        m_EditorLayer->ImGuiInit(*m_NativeWindowHandle.get());
 
         //x glfwSetCursorPosCallback((GLFWwindow*)m_NativeWindowHandle, MousePositionCallback);
     }
@@ -87,7 +87,7 @@ namespace DEVIAN {
         glClear(GL_COLOR_BUFFER_BIT);
 
         // Render The Engine UI.
-        // m_DevianUI->RenderUI();
+        m_EditorLayer->RenderUI();
 
         filewatch::FileWatch<std::wstring> watch(
             LR"(C:\Dev\Projects\C++ Projects\Game Engine\Devian\Devian\Test)",
@@ -143,7 +143,7 @@ namespace DEVIAN {
         glfwDestroyWindow(*m_NativeWindowHandle.release());
         glfwTerminate();
 
-        m_DevianUI = nullptr;
+        m_EditorLayer = nullptr;
         m_NativeWindowHandle = nullptr;
     }
 

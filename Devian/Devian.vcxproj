@@ -75,7 +75,7 @@
     <LibraryPath>$(SolutionDir)\Devian\vendor\mono\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(SolutionDir)\Devian\src\Devian;$(SolutionDir)\Devian\vendor\mono\include\mono-2.0;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)\Devian\vendor\glad\include;$(SolutionDir)\Devian\vendor\glm;$(SolutionDir)\Devian\src;$(SolutionDir)\Devian\src\Devian;$(SolutionDir)\Devian\vendor\mono\include\mono-2.0;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)\Devian\vendor\mono\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -156,8 +156,8 @@
     <ClCompile Include="src\Devian\Platform\WindowsPlatform.cpp" />
     <ClCompile Include="src\Devian\Renderer\Camera3D.cpp" />
     <ClCompile Include="src\Devian\Scripting\Script.cpp" />
-    <ClCompile Include="src\Devian\UI\DevianUI.cpp" />
-    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Devian\Deviannut\EditorLayer.cpp" />
+    <ClCompile Include="src\Sandbox.cpp" />
     <ClCompile Include="vendor\glad\src\glad.c" />
     <ClCompile Include="vendor\glm\glm\detail\glm.cpp" />
     <ClCompile Include="vendor\glm\glm\glm.cppm" />
@@ -172,11 +172,16 @@
     <ClCompile Include="vendor\imgui\misc\cpp\imgui_stdlib.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Devian.hpp" />
     <ClInclude Include="src\Devian\Core\Application.hpp" />
     <ClInclude Include="src\Devian\Core\Buffer.hpp" />
     <ClInclude Include="src\Devian\Core\Core.hpp" />
+    <ClInclude Include="src\Devian\Core\EntryPoint.hpp" />
     <ClInclude Include="src\Devian\Core\Input.hpp" />
     <ClInclude Include="src\Devian\Core\Key.hpp" />
+    <ClInclude Include="src\Devian\Events\ApplicationEvent.hpp" />
+    <ClInclude Include="src\Devian\Events\Event.hpp" />
+    <ClInclude Include="src\Devian\Events\KeyEvent.hpp" />
     <ClInclude Include="src\Devian\Platform\GL\GLCommands.hpp" />
     <ClInclude Include="src\Devian\Platform\GL\GLGraphicsContext.hpp" />
     <ClInclude Include="src\Devian\Platform\GL\GLIndexBuffer.hpp" />
@@ -191,7 +196,7 @@
     <ClInclude Include="src\Devian\Renderer\GraphicsContext.hpp" />
     <ClInclude Include="src\Devian\Renderer\Camera3D.hpp" />
     <ClInclude Include="src\Devian\Scripting\Script.hpp" />
-    <ClInclude Include="src\Devian\UI\DevianUI.hpp" />
+    <ClInclude Include="src\Devian\Deviannut\EditorLayer.hpp" />
     <ClInclude Include="src\Devian\Utils\FileWatch.hpp" />
     <ClInclude Include="vendor\glad\include\glad\glad.h" />
     <ClInclude Include="vendor\glad\include\KHR\khrplatform.h" />

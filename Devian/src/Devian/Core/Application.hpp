@@ -29,7 +29,7 @@ namespace DEVIAN {
 		~Application();
 
 		inline bool IsRunning() noexcept;
-		void Run();
+		virtual void Run();
 
 		void SetWidth(uint32_t);
 		void SetHeight(uint32_t);
@@ -38,21 +38,26 @@ namespace DEVIAN {
 		PlatformLayer* GetPlatformLayer();
 		ApplicationSpecs GetApplicationSpecs();
 
-		void SetWindowSizeCallBack(const WindowSizeCallBackFuncPtr& func);
-		void SetKeyboardCallBack(const KeyboardCallBackFuncPtr& func);
+		virtual void ExecuteScript() {}
+
+		virtual void SetWindowSizeCallBack(const WindowSizeCallBackFuncPtr& func);
+		virtual void SetKeyboardCallBack(const KeyboardCallBackFuncPtr& func);
 
 		WindowSizeCallBackFuncPtr GetWindowSizeCallBack();
 		KeyboardCallBackFuncPtr GetKeyboardCallBack();
+
+	protected:
+		// CallBacks
+		WindowSizeCallBackFuncPtr m_WindowSizeCallBackFuncPtr = nullptr;
+		KeyboardCallBackFuncPtr m_KeyboardCallBackFuncPtr = nullptr;
 
 	private:
 		ApplicationSpecs m_AppSpecs;
 		std::unique_ptr<PlatformLayer> m_Platform;
 		std::unique_ptr<GraphicsContext> m_GraphicsContext;
 
-		// CallBacks
-		WindowSizeCallBackFuncPtr m_WindowSizeCallBackFuncPtr = nullptr;
-		KeyboardCallBackFuncPtr m_KeyboardCallBackFuncPtr = nullptr;
-
 		inline static Application* m_Instance;
 	};
+
+	Application* CreateApplication();
 }

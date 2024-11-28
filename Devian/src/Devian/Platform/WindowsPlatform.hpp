@@ -1,7 +1,7 @@
 #pragma once
 #include "Platform.hpp"
 
-#include <UI/DevianUI.hpp>
+#include <Deviannut/EditorLayer.hpp>
 #include <GLFW/glfw3.h>
 #include <memory>
 
@@ -38,7 +38,7 @@ namespace DEVIAN {
 		virtual bool IsMouseButtonReleased(int mouseButton) override;
 
 	private:
-		std::unique_ptr<DevianUI> m_DevianUI;
+		std::unique_ptr<EditorLayer> m_EditorLayer;
 		std::unique_ptr<GLFWwindow*> m_NativeWindowHandle;
 	};
 }

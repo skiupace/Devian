@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\main.cpp">
+    <ClCompile Include="src\Sandbox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Devian\Core\Application.cpp">
@@ -24,7 +24,7 @@
     <ClCompile Include="src\Devian\Platform\WindowsPlatform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Devian\UI\DevianUI.cpp">
+    <ClCompile Include="src\Devian\Deviannut\EditorLayer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Devian\Core\Input.cpp">
@@ -110,7 +110,7 @@
     <ClInclude Include="src\Devian\Platform\WindowsPlatform.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Devian\UI\DevianUI.hpp">
+    <ClInclude Include="src\Devian\Deviannut\EditorLayer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Devian\Core\Input.hpp">
@@ -1068,6 +1068,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Devian\Platform\GL\GLVertexBuffer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Devian\Core\EntryPoint.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Devian.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Devian\Events\Event.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Devian\Events\ApplicationEvent.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Devian\Events\KeyEvent.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

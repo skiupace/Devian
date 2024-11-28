@@ -2,10 +2,10 @@
 #include <Core/Application.hpp>
 
 namespace DEVIAN {
-	class DevianUI {
+	class EditorLayer {
 	public:
-		DevianUI() = default;
-		~DevianUI();
+		EditorLayer() = default;
+		~EditorLayer();
 
 		void ImGuiInit(void*);
 		void RenderUI();

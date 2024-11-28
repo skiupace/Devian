@@ -1,4 +1,4 @@
-#include "DevianUI.hpp"
+#include "EditorLayer.hpp"
 
 #include <iostream>
 #include <glad/glad.h>
@@ -10,7 +10,7 @@
 #include "imgui_impl_opengl3.h"
 
 namespace DEVIAN {
-	void DevianUI::ImGuiInit(void* NativeWindowHandle) {
+	void EditorLayer::ImGuiInit(void* NativeWindowHandle) {
 		// Setup Dear ImGui context
 		IMGUI_CHECKVERSION();
 		ImGui::CreateContext();
@@ -27,7 +27,7 @@ namespace DEVIAN {
 		glfwSwapInterval(1); // Enable V-Sync
 	}
 
-	void DevianUI::InitFramebuffer() {
+	void EditorLayer::InitFramebuffer() {
 		// Create framebuffer
 		glGenFramebuffers(1, &framebuffer);
 		glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
@@ -54,14 +54,14 @@ namespace DEVIAN {
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	}
 
-	void DevianUI::ResizeFramebuffer(int width, int height) {
+	void EditorLayer::ResizeFramebuffer(int width, int height) {
 		glBindTexture(GL_TEXTURE_2D, texture);
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, nullptr);
 		glBindRenderbuffer(GL_RENDERBUFFER, depthStencil);
 		glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, width, height);
 	}
 
-	void DevianUI::SceneTab() {
+	void EditorLayer::SceneTab() {
 		ImGui::Begin("Scene");
 		
 		// Bind framebuffer
@@ -69,15 +69,15 @@ namespace DEVIAN {
 		glViewport(0, 0, 1280, 565); // Match framebuffer size
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        // Get elapsed time since program launch
-        float time = static_cast<float>(glfwGetTime());
+		// Get elapsed time since program launch
+		float time = static_cast<float>(glfwGetTime());
 
-        // Vary color based on time
-        float red = (std::sin(time * 0.5f) + 1.0f) / 2.0f;
-        float green = (std::sin(time * 0.3f) + 1.0f) / 2.0f;
-        float blue = (std::sin(time * 0.7f) + 1.0f) / 2.0f;
+		// Vary color based on time
+		float red = (std::sin(time * 0.5f) + 1.0f) / 2.0f;
+		float green = (std::sin(time * 0.3f) + 1.0f) / 2.0f;
+		float blue = (std::sin(time * 0.7f) + 1.0f) / 2.0f;
 
-		// Set random background color
+		// Set initial background color
 		glClearColor(red, green, blue, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -93,7 +93,7 @@ namespace DEVIAN {
 		ImGui::End();
 	}
 
-	void DevianUI::ObjectProperitiesTab() {
+	void EditorLayer::ObjectProperitiesTab() {
 		static float f[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
 		static ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 
@@ -110,7 +110,7 @@ namespace DEVIAN {
 		ImGui::End();
 	}
 
-	void DevianUI::RenderUI() {
+	void EditorLayer::RenderUI() {
 		if (!ImGui::GetCurrentContext()) {
 			std::cerr << "ImGui context not initialized!" << std::endl;
 			return;
@@ -178,7 +178,7 @@ namespace DEVIAN {
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 	}
 
-	DevianUI::~DevianUI() {
+	EditorLayer::~EditorLayer() {
 		ImGui_ImplOpenGL3_Shutdown();
 		ImGui_ImplGlfw_Shutdown();
 		ImGui::DestroyContext();
