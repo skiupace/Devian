@@ -7,7 +7,7 @@ namespace DEVIAN {
 	public:
 		WindowResizeEvent() = default;
 		static void OnApplicationResize(unsigned int width, unsigned int height) {
-			std::cout << "Width: " << width << ", Height: " << height << '\n';
+			spdlog::info("Width: {}, Height : {}", width, height);
 		}
 	};
 }

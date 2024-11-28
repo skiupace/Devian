@@ -3,6 +3,8 @@
 // To use with Devian Applications
 
 #include <GLFW/glfw3.h>
+#include <spdlog/spdlog.h>
+
 #include <Core/Key.hpp>
 #include <Core/Application.hpp>
 #include <Scripting/Script.hpp>

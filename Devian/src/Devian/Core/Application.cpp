@@ -2,6 +2,8 @@
 
 #include <iostream>
 #include <GLFW/glfw3.h>
+#include <spdlog/spdlog.h>
+
 #include <Core/Core.hpp>
 #include <Platform/WindowsPlatform.hpp>
 
@@ -44,7 +46,7 @@ namespace DEVIAN {
 				m_Platform->PollEvents();
 			}
 		} catch (const std::exception& ex) {
-			std::cerr << ex.what() << std::flush;
+			spdlog::error(ex.what());
 			return;
 		}
 	}

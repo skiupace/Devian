@@ -13,14 +13,9 @@ int main(int argc, char** argv) {
         app->SetWindowSizeCallBack(DEVIAN::WindowResizeEvent::OnApplicationResize);
         app->SetKeyboardCallBack(DEVIAN::KeyPressedEvent::OnApplicationKeyboardPressed);
         app->Run();
-
-        //[[maybe_unused]] //! Require C++17.
-        //auto finally = std::unique_ptr<void, std::function<void(void*)>>(nullptr, [&app](void*) {
-        //    app = nullptr;
-        //});
-    } catch (std::exception ex) {
-        std::cerr << ex.what() << std::flush;
-        return -1;
+    } catch (const std::exception& ex) {
+        spdlog::error(ex.what());
+        return EXIT_FAILURE;
     }
 
 	return EXIT_SUCCESS;

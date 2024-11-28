@@ -22,7 +22,7 @@ namespace DEVIAN {
 
 		static void OnApplicationKeyboardPressed(KeyCode keyCode) {
 			try {
-				printf("Key %s has been pressed!\n", glfwGetKeyName(static_cast<int>(keyCode), 0));
+				spdlog::info("Key {} has been pressed!", glfwGetKeyName(static_cast<int>(keyCode), 0));
 			} catch (std::exception ex) {
 				std::cerr << ex.what() << std::flush;
 			}

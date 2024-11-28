@@ -75,7 +75,7 @@
     <LibraryPath>$(SolutionDir)\Devian\vendor\mono\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(SolutionDir)\Devian\vendor\glad\include;$(SolutionDir)\Devian\vendor\glm;$(SolutionDir)\Devian\src;$(SolutionDir)\Devian\src\Devian;$(SolutionDir)\Devian\vendor\mono\include\mono-2.0;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)\Devian\vendor\glad\include;$(SolutionDir)\Devian\vendor\spdlog\include;$(SolutionDir)\Devian\vendor\glm;$(SolutionDir)\Devian\src;$(SolutionDir)\Devian\src\Devian;$(SolutionDir)\Devian\vendor\mono\include\mono-2.0;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)\Devian\vendor\mono\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -132,6 +132,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)\Devian\vendor\imgui\misc\debuggers;$(SolutionDir)\Devian\vendor\imgui\backends;$(SolutionDir)\Devian\vendor\imgui;$(SolutionDir)\Devian\vendor\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
