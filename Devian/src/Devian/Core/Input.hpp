@@ -5,11 +5,11 @@
 namespace DEVIAN {
 	class Input {
 	public:
-		bool IsKeyPressed(KeyCode);
-		bool IsKeyReleased(KeyCode);
+		static bool IsKeyPressed(KeyCode);
+		static bool IsKeyReleased(KeyCode);
 
-		bool IsMouseButtonPressed(MouseButton);
-		bool IsMouseButtonReleased(MouseButton);
+		static bool IsMouseButtonPressed(MouseButton);
+		static bool IsMouseButtonReleased(MouseButton);
 
 		static void SetMousePosition(const glm::vec2&);
 		static glm::vec2 GetMousePosition();

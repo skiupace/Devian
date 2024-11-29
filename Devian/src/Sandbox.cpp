@@ -33,7 +33,10 @@ public:
 	}
 
 	~Sandbox() {
+		m_App = nullptr;
 		m_TestScript = nullptr;
+		m_KeyPressedEvent = nullptr;
+		m_WindowResizeEvent = nullptr;
 	}
 
 private:

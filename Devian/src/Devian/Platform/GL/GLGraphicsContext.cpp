@@ -17,12 +17,12 @@ namespace DEVIAN {
 			int width;
 			int height;
 
-			glfwGetWindowSize((GLFWwindow*)NativeWindowHandle, &width, &height);
+			glfwGetWindowSize(static_cast<GLFWwindow*>(NativeWindowHandle), &width, &height);
 			glViewport(0, 0, width, height);
 		}
 
 		void GLGraphicsContext::SwapBuffers(void* NativeWindowHandle) {
-			glfwSwapBuffers((GLFWwindow*)NativeWindowHandle);
+			glfwSwapBuffers(static_cast<GLFWwindow*>(NativeWindowHandle));
 		}
 	}
 }

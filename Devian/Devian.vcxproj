@@ -504,6 +504,8 @@
     <ClInclude Include="vendor\imgui\misc\cpp\imgui_stdlib.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="res\gl shaders\pos_fragment.frag" />
+    <None Include="res\gl shaders\pos_vertex.vert" />
     <None Include="vendor\glm\glm\detail\func_common.inl" />
     <None Include="vendor\glm\glm\detail\func_common_simd.inl" />
     <None Include="vendor\glm\glm\detail\func_exponential.inl" />

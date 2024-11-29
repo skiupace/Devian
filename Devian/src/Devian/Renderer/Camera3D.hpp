@@ -24,9 +24,9 @@ namespace DEVIAN {
 	class Camera3D {
 	public:
 		Camera3D() = default;
-		Camera3D(const glm::vec3& position);
+		Camera3D(const glm::vec3&);
 
-		void Update(float dt);
+		void Update(float);
 
 		glm::mat4 GetProjectionMatrix();
 		glm::mat4 GetViewMatrix();

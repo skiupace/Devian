@@ -2,13 +2,18 @@
 
 #include <iostream>
 #include <Core/Core.hpp>
+#include <Core/Input.hpp>
 #include <Core/Application.hpp>
+
 #include <Utils/FileWatch.hpp>
+#include <Platform/GL/GLCommands.hpp>
 
 namespace DEVIAN {
+    bool FirstMouse = true;
+
     void WindowResizeCallBack(GLFWwindow* window, int width, int height) {
         Application& App = Application::Get();
-        // GL::GLCommands::SetViewPort(width, height);
+        GL::GLCommands::SetViewPort(width, height);
 
         WindowSizeCallBackFuncPtr windowSizeCallBackFuncPtr = Application::Get().GetWindowSizeCallBack();
         if (windowSizeCallBackFuncPtr)
@@ -19,6 +24,25 @@ namespace DEVIAN {
         KeyboardCallBackFuncPtr keyboardCallBackFuncPtr = Application::Get().GetKeyboardCallBack();
         if (keyboardCallBackFuncPtr)
             keyboardCallBackFuncPtr((KeyCode)key);
+    }
+
+    void CursorPositionCallBack(GLFWwindow* window, double xpos, double ypos) {
+        if (FirstMouse) {
+            Input::SetMousePosition(glm::vec2(xpos, ypos));
+            FirstMouse = false;
+        }
+
+        auto lastmouse = Input::GetMousePosition();
+
+        float xoffset = static_cast<float>(xpos) - lastmouse.x;
+        float yoffset = lastmouse.y - static_cast<float>(ypos);
+
+        Input::SetMouseOffset(glm::vec2(xoffset, yoffset));
+        Input::SetMousePosition(glm::vec2(xpos, ypos));
+    }
+
+    void MouseScrollCallBack(GLFWwindow* window, double xoffset, double yoffset) {
+        Input::SetMouseScroll(glm::vec2(xoffset, yoffset));
     }
 }
 
@@ -43,6 +67,11 @@ namespace DEVIAN {
         //! Initilize GLFW debug context
         glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, true);
 
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
+        glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+        glfwWindowHint(GLFW_SAMPLES, 8);
+
         //! Set GLFW Error CallBack
         glfwSetErrorCallback(ErrorCallBack);
 
@@ -54,9 +83,11 @@ namespace DEVIAN {
 
         glfwSetWindowSizeCallback(*m_NativeWindowHandle.get(), WindowResizeCallBack);
         glfwSetKeyCallback(*m_NativeWindowHandle.get(), KeyboardCallBack);
+        glfwSetCursorPosCallback(*m_NativeWindowHandle.get(), CursorPositionCallBack);
+        glfwSetScrollCallback(*m_NativeWindowHandle.get(), MouseScrollCallBack);
 
         // Initilize ImGui Library.
-        m_EditorLayer->ImGuiInit(*m_NativeWindowHandle.get());
+        // m_EditorLayer->ImGuiInit(*m_NativeWindowHandle.get());
 
         //x glfwSetCursorPosCallback((GLFWwindow*)m_NativeWindowHandle, MousePositionCallback);
     }
@@ -87,7 +118,7 @@ namespace DEVIAN {
         glClear(GL_COLOR_BUFFER_BIT);
 
         // Render The Engine UI.
-        m_EditorLayer->RenderUI();
+        // m_EditorLayer->RenderUI();
 
         filewatch::FileWatch<std::wstring> watch(
             LR"(C:\Dev\Projects\C++ Projects\Game Engine\Devian\Devian\Test)",

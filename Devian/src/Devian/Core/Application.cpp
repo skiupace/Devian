@@ -10,6 +10,10 @@
 #include <Platform/GL/GLCommands.hpp>
 #include <Platform/GL/GLGraphicsContext.hpp>
 
+#include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+
 namespace DEVIAN {
 	Application::Application(const ApplicationSpecs& specs) : m_AppSpecs(specs) {
 		#if defined(_WIN32) || defined(_WIN64)
@@ -31,8 +35,52 @@ namespace DEVIAN {
 			break;
 
 		case NONE:
-			DEVIAN_ASSERT_MSG(false, "Failed to specify garphics api");
+			DEVIAN_ASSERT_MSG(false, "Failed to specify garphics API");
 		}
+
+		// Camera Setup
+		m_Camera = Camera3D(glm::vec3(0.0f, 0.0f, 5.0f));
+
+		std::vector<glm::vec3> vertices = {
+			{ 0.5f,  0.5f, 0.0f },  // top right
+			{ 0.5f, -0.5f, 0.0f },  // bottom right
+			{-0.5f, -0.5f, 0.0f },  // bottom left
+			{-0.5f,  0.5f, 0.0f }	// top left
+		};
+
+		std::vector<uint32_t> indices = {
+			0, 1, 3,   // first triangle
+			1, 2, 3    // second triangle
+		};
+
+		// VBO
+		GL::GLVertexBuffer QuadVertexBuffer;
+		QuadVertexBuffer.Create();
+		QuadVertexBuffer.Fill(BufferData::CreateFrom(vertices), GL::GLVertexBufferUsage::STATIC_DRAW);
+
+		// EBO
+		GL::GLIndexBuffer QuadIndexBuffer;
+		QuadIndexBuffer.Create();
+		QuadIndexBuffer.Fill(indices);
+
+		// VAO
+		QuadVertexArray.Create();
+		QuadVertexArray.AddVertexBuffer(QuadVertexBuffer, sizeof(glm::vec3));
+		QuadVertexArray.AddIndexBuffer(QuadIndexBuffer);
+
+		{
+			GL::GLVertexAttrib PositionAttrib;
+			PositionAttrib.ShaderLocation = 0;
+			PositionAttrib.Count = 3;
+			PositionAttrib.Type = GL::GLShaderAttribType::FLOAT;
+			PositionAttrib.Offset = 0;
+
+			QuadVertexArray.AddVertexAttrib(PositionAttrib);
+		}
+
+		Shader.LoadFromFile("res/gl shaders/pos_vertex.vert", "res/gl shaders/pos_fragment.frag");
+
+		CameraUnifromBuffer.Create(0);
 	}
 
 	inline bool Application::IsRunning() noexcept {
@@ -42,8 +90,40 @@ namespace DEVIAN {
 	void Application::Run() {
 		try {
 			while (IsRunning()) {
-				m_Platform->RenderWindow();
+				{ // Calculate DeltaTime
+					float CurrentFrame = static_cast<float>(glfwGetTime());
+					m_DeltaTime = CurrentFrame - m_LastTime;
+					m_LastTime = CurrentFrame;
+				}
+
+				// Poll Events
 				m_Platform->PollEvents();
+
+				m_Camera.Update(m_DeltaTime);
+
+				// Graphics
+				GL::GLCommands::Clear(0.1f, 0.1f, 0.1f, 1.0f);
+				GL::GLCommands::ClearFlag(GL::ClearFlags::COLOR);
+				Shader.Bind();
+
+				{
+					glm::mat4 proj = m_Camera.GetProjectionMatrix() * m_Camera.GetViewMatrix();
+
+					BufferData CameraBuffer = { &proj, sizeof(glm::mat4) };
+					CameraUnifromBuffer.Update(CameraBuffer);
+
+					glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 0.0f))
+						* glm::rotate(glm::mat4(1.0f), static_cast<float>(glfwGetTime()), glm::vec3(0.0f, 1.0f, 0.0f));
+
+					Shader.SetMat4("model", model);
+				}
+
+				QuadVertexArray.Bind();
+				GL::GLCommands::DrawIndexed(GL::Primitive::TRIANGLES, 6);
+
+				m_GraphicsContext->SwapBuffers(m_Platform->GetNativeWindowHandle());
+
+				Input::ResetInput();
 			}
 		} catch (const std::exception& ex) {
 			spdlog::error(ex.what());

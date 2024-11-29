@@ -1,9 +1,14 @@
 #pragma once
 #include <Renderer/GraphicsContext.hpp>
 #include <Platform/Platform.hpp>
-#include <Core/Key.hpp>
+#include <Core/Input.hpp>
 #include <functional>
 #include <memory>
+
+#include <Platform/GL/GLUniformBuffer.hpp>
+#include <Platform/GL/GLVertexArray.hpp>
+#include <Platform/GL/GLShader.hpp>
+#include <Renderer/Camera3D.hpp>
 
 namespace DEVIAN {
 	enum GraphicsAPI {
@@ -57,6 +62,15 @@ namespace DEVIAN {
 		std::unique_ptr<GraphicsContext> m_GraphicsContext;
 
 		inline static Application* m_Instance;
+
+		Camera3D m_Camera;
+		GL::GLShader Shader;
+		GL::GLVertexArray QuadVertexArray;
+		GL::GLUniformBuffer CameraUnifromBuffer;
+
+	private:
+		float m_DeltaTime = 0.0f;
+		float m_LastTime = 0.0f;
 	};
 
 	Application* CreateApplication();

@@ -20,7 +20,7 @@ namespace DEVIAN {
 
 			void AddVertexBuffer(GLVertexBuffer&, uint32_t);
 			void AddIndexBuffer(GLIndexBuffer&);
-			void AddVertexAttrib(const GLVertexAttrib&, uint32_t);
+			void AddVertexAttrib(const GLVertexAttrib& attrib, uint32_t vertexbufferbindingindex = 0);
 			void Bind();
 		private:
 			std::vector<GLVertexBuffer> m_VertexBuffers;

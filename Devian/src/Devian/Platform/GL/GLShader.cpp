@@ -2,6 +2,7 @@
 
 #include <fstream>
 #include <sstream>
+
 #include <glad/glad.h>
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -16,7 +17,7 @@ namespace DEVIAN {
                 glDeleteProgram(m_ProgramID);
         }
 
-        bool GLShader::LoadFromFile(const std::string & vertexPath, const std::string & fragmentPath) {
+        bool GLShader::LoadFromFile(const std::string& vertexPath, const std::string& fragmentPath) {
             std::string vertexCode;
             std::string fragmentCode;
 
@@ -46,11 +47,13 @@ namespace DEVIAN {
             return CompileAndLink(vertexCode, fragmentCode);
         }
 
-        bool GLShader::CompileAndLink(const std::string & vertexCode, const std::string & fragmentCode) {
+        bool GLShader::CompileAndLink(const std::string& vertexCode, const std::string& fragmentCode) {
             const char* vShaderCode = vertexCode.c_str();
             const char* fShaderCode = fragmentCode.c_str();
 
-            GLuint vertex, fragment;
+            GLuint vertex;
+            GLuint fragment;
+
             int success;
             char infoLog[512];
 
@@ -105,7 +108,7 @@ namespace DEVIAN {
             glUseProgram(m_ProgramID);
         }
 
-        void GLShader::SetFloat(const std::string & name, float value) const {
+        void GLShader::SetFloat(const std::string& name, float value) const {
             GLint Location = glGetUniformLocation(m_ProgramID, name.c_str());
             DEVIAN_ASSERT_MSG(Location >= 0, "Unknown Uniform");
             glUniform1f(Location, value);

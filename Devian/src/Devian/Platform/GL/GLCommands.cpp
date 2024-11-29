@@ -4,20 +4,20 @@
 #include <Core/Core.hpp>
 
 namespace DEVIAN {
-	GLuint ToGL(DEVIAN::GL::ClearFlags flag) {
+	GLuint ToGL(GL::ClearFlags flag) {
 		switch (flag) {
-		case DEVIAN::GL::ClearFlags::COLOR: return GL_COLOR_BUFFER_BIT;
-		case DEVIAN::GL::ClearFlags::DEPTH: return GL_DEPTH_BUFFER_BIT;
-		case DEVIAN::GL::ClearFlags::COLOR_DEPTH: return GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT;
+		case GL::ClearFlags::COLOR: return GL_COLOR_BUFFER_BIT;
+		case GL::ClearFlags::DEPTH: return GL_DEPTH_BUFFER_BIT;
+		case GL::ClearFlags::COLOR_DEPTH: return GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT;
 		default:
 			DEVIAN_ASSERT_MSG(false, "UnKnown flag!");
 		}
 	}
 
-	GLenum ToGL(DEVIAN::GL::Primitive primitive) {
+	GLenum ToGL(GL::Primitive primitive) {
 		switch (primitive) {
-		case DEVIAN::GL::Primitive::LINE_LOOP: return GL_LINE_LOOP;
-		case DEVIAN::GL::Primitive::TRIANGLES: return GL_TRIANGLES;
+		case GL::Primitive::LINE_LOOP: return GL_LINE_LOOP;
+		case GL::Primitive::TRIANGLES: return GL_TRIANGLES;
 		default:
 			DEVIAN_ASSERT_MSG(false, "UnKnown primitive!");
 		}

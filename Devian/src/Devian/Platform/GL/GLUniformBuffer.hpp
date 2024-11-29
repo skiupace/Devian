@@ -7,11 +7,8 @@ namespace DEVIAN {
 		class GLUniformBuffer : GLObject {
 		public:
 			void Create(uint32_t);
-			void Update(const DEVIAN::BufferData&);
+			void Update(const BufferData&);
 			void Destroy();
-
-		private:
-
 		};
 	}
 }

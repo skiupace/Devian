@@ -9,7 +9,7 @@ namespace DEVIAN {
 		class GLVertexBuffer : public GLObject {
 		public:
 			void Create();
-			void Fill(const DEVIAN::BufferData&, GLVertexBufferUsage);
+			void Fill(const BufferData& buffer, GLVertexBufferUsage usage = GLVertexBufferUsage::STATIC_DRAW);
 			void Destroy();
 		};
 	}

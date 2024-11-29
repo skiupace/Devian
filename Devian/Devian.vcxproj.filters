@@ -1501,5 +1501,7 @@
     <None Include="vendor\glm\glm\gtx\wrap.inl">
       <Filter>Header Files</Filter>
     </None>
+    <None Include="res\gl shaders\pos_fragment.frag" />
+    <None Include="res\gl shaders\pos_vertex.vert" />
   </ItemGroup>
 </Project>
