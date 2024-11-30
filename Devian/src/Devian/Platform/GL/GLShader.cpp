@@ -36,7 +36,7 @@ namespace DEVIAN {
                 fragmentCode = fShaderStream.str();
                 fShaderFile.close();
             } catch (std::ifstream::failure& e) {
-                std::cerr << "ERROR::SHADER::FILE_NOT_SUCCESSFULLY_READ" << std::endl;
+                std::cerr << "ERROR::SHADER::FILE_NOT_SUCCESSFULLY_READ " << e.what() << std::endl;
                 return false;
             }
 

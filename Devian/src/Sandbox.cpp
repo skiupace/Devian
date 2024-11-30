@@ -12,7 +12,7 @@ public:
 		m_App = std::make_unique<DEVIAN::Application>(m_Specs);
 
 		m_TestScript = std::make_unique<DEVIAN::ScriptingEngine>(
-			R"(C:\Dev\Projects\C++ Projects\Game Engine\Devian\Devian\Resources\Debug\net8.0\TestGame.dll)"
+			R"(C:\Dev\Projects\C++ Projects\Game Engine\Devian\Devian\Resources\Release\net8.0\TestGame.dll)"
 		);
 	}
 

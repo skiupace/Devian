@@ -85,7 +85,7 @@ namespace DEVIAN {
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
 		// Restore OpenGL viewport
-		glViewport(0, 0, ImGui::GetIO().DisplaySize.x, ImGui::GetIO().DisplaySize.y);
+		glViewport(0, 0, static_cast<GLsizei>(ImGui::GetIO().DisplaySize.x), static_cast<GLsizei>(ImGui::GetIO().DisplaySize.y));
 
 		// Render the framebuffer texture inside the Scene tab
 		ImGui::Image((void*)(intptr_t)texture, ImVec2(1280, 565), ImVec2(0, 1), ImVec2(1, 0));

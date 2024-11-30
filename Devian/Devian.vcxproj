@@ -71,8 +71,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)\Devian\vendor\glad\include;$(SolutionDir)\Devian\vendor\spdlog\include;$(SolutionDir)\Devian\vendor\glm;$(SolutionDir)\Devian\src;$(SolutionDir)\Devian\src\Devian;$(SolutionDir)\Devian\vendor\mono\include\mono-2.0;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)\Devian\vendor\mono\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)\Devian\src;$(SolutionDir)\Devian\src\Devian</IncludePath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)bin\$(Configuration)-$(Platform)\$(ProjectName)\</OutDir>
     <IntDir>$(SolutionDir)bin-int\$(Configuration)-$(Platform)\$(ProjectName)\</IntDir>
   </PropertyGroup>
@@ -116,14 +116,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\Devian\vendor\imgui\misc\debuggers;$(SolutionDir)\Devian\vendor\imgui\backends;$(SolutionDir)\Devian\vendor\imgui;$(SolutionDir)\Devian\vendor\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Devian\vendor\imgui\misc\debuggers;$(SolutionDir)\Devian\vendor\imgui\backends;$(SolutionDir)\Devian\vendor\imgui;$(SolutionDir)\Devian\vendor\spdlog\include;$(SolutionDir)\Devian\vendor\glfw\include;$(SolutionDir)\Devian\vendor\glm;$(SolutionDir)\Devian\vendor\glad\include;$(SolutionDir)\Devian\vendor\mono\include\mono-2.0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)\Devian\vendor\glfw\lib-vc2022;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Devian\vendor\glfw\lib-vc2022;$(SolutionDir)\Devian\vendor\mono\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glfw3.lib;opengl32.lib;mono-2.0-sgen.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>

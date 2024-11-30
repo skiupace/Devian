@@ -30,7 +30,7 @@ namespace DEVIAN {
 		}
 
 		void GLVertexArray::AddVertexBuffer(GLVertexBuffer& vertexBuffer, uint32_t stride) {
-			glVertexArrayVertexBuffer(m_Handle, m_VertexBuffers.size(), vertexBuffer.GetHandle(), 0, stride);
+			glVertexArrayVertexBuffer(m_Handle, static_cast<GLsizei>(m_VertexBuffers.size()), vertexBuffer.GetHandle(), 0, stride);
 			m_VertexBuffers.push_back(vertexBuffer);
 		}
 
