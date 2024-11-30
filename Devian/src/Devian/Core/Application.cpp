@@ -34,6 +34,10 @@ namespace DEVIAN {
 			DEVIAN_ASSERT_MSG(false, "Vulkan Not Supported Yet!");
 			break;
 
+		case DX11:
+			DEVIAN_ASSERT_MSG(false, "DX11 Not Supported Yet!");
+			break;
+
 		case NONE:
 			DEVIAN_ASSERT_MSG(false, "Failed to specify garphics API");
 		}

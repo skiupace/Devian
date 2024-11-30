@@ -14,7 +14,8 @@ namespace DEVIAN {
 	enum GraphicsAPI {
 		NONE,
 		OPENGL,
-		VULKAN
+		VULKAN,
+		DX11
 	};
 
 	struct ApplicationSpecs {

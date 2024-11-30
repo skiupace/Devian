@@ -5,7 +5,7 @@ VisualStudioVersion = 17.10.35027.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Devian", "Devian\Devian.vcxproj", "{12BA7009-BDD9-4968-963A-643CFB83D507}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestGame", "TestGame\TestGame.csproj", "{25056AB8-7B44-4127-B961-6215A0137283}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestGame", "TestGame\TestGame.csproj", "{25056AB8-7B44-4127-B961-6215A0137283}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
